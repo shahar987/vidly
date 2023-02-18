@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
+import { paginate } from "../utils/paginat";
 
 function Movies(){
     const [state, setState] = useState({
@@ -10,6 +11,8 @@ function Movies(){
         currentPage: 1
     })
     const [movieCount, setMovieCount] = useState(state.movies.length)
+    const moviesPage = paginate(state.movies, state.currentPage, state.pageSize);
+
 
 
     const deleteMovie = (movie) =>{
@@ -33,7 +36,6 @@ function Movies(){
             movies:state.movies,
             pageSize: state.pageSize,
             currentPage: page})
-        console.log(state.currentPage)
     }
     
     return(
@@ -54,7 +56,7 @@ function Movies(){
                     </tr>
                 </thead>
                 <tbody>
-                    {state.movies.map(movie =>(
+                    {moviesPage.map(movie =>(
     
                         <tr key={movie._id}>
                             <td>{movie.title}</td>
