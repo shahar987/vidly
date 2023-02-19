@@ -23,7 +23,8 @@ function Pagination({itemCount, pageSize,currentPage, handlePageChange}) {
         </div>
     )
 }
-Pagination.PropTypes = {
+
+Pagination.propTypes = {
     itemCount: PropTypes.number.isRequired,
     pageSize: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
