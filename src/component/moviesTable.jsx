@@ -1,42 +1,35 @@
 import Like
  from "./common/like";
-function MoviesTable({moviesPage, handleLike, deleteMovie }){
+import Table from "./common/table";
+
+function MoviesTable({moviesPage, handleLike, deleteMovie, sortColumn, onSort }){
+    const columns= [
+        {path: 'title',lable: 'Title'},
+        {path: 'genre.name',lable: 'Genre'},
+        {path: 'numberInStock',lable: 'Stock'},
+        {path: 'dailyRentalRate',lable: 'Rate'},
+        {
+            key:'like', 
+            content:movie =>(
+            <Like liked={movie.liked}onClick={()=>handleLike(movie)}/>
+            )
+        },
+        {
+            key:'delete', 
+            content:movie =>(
+            <button type="button" className="btn btn-danger" onClick={() => deleteMovie(movie)}>Delete</button>
+            )
+        },
+    ]
+
     
     return(
-        <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Rate</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {moviesPage.map(movie =>(
-    
-                        <tr key={movie._id}>
-                            <td>{movie.title}</td>
-                            <td>{movie.genre.name}</td>
-                            <td>{movie.numberInStock}</td>
-                            <td>{movie.dailyRentalRate}</td>
-                            <td>
-                                <Like 
-                                liked={movie.liked}
-                                onClick={()=>handleLike(movie)}
-                                />
-                            </td>
-                            <td>
-                                <button type="button" className="btn btn-danger" onClick={() => deleteMovie(movie)}>Delete</button>
-                            </td>
-
-                        </tr>
-                    ))}
-                    
-                </tbody>
-                </table>
+        <Table
+        columns={columns} 
+        sortColumn={sortColumn} 
+        onSort={onSort} 
+        data={moviesPage}
+        />
     )
 }
 
