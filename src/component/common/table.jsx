@@ -1,5 +1,7 @@
 import TableBody from "./tableBody";
 import TableHeader from "./tableHeader";
+import React from "react";
+
 
 function Table({columns, sortColumn, onSort, data}){
     return(

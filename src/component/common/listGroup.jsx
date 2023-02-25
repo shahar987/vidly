@@ -1,3 +1,4 @@
+import React from "react";
 
 
 function ListGroup({onItemSelect, items, textProperty, valueProperty, selectedGenre}){
