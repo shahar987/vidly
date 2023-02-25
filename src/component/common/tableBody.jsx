@@ -1,12 +1,15 @@
 import _ from 'lodash'
+import React from "react";
+import { Link } from 'react-router-dom'
 
 function TableBody({data, columns}){
 
     const renderCell = (item, column) =>{
+        
         if(column.content){
             return column.content(item)
         }
-        else{
+        else{           
             return _.get(item, column.path)
         }
     }

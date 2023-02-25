@@ -1,4 +1,5 @@
 import '../../index.css';
+import React from "react";
 
 
 function TableHeader({columns, sortColumn, onSort}){
